@@ -1,4 +1,14 @@
-# Mac Media Stack (Advanced)
+```
+                          edia            tack
+ ██████████████████████  ░░░░░░  ████████ ░░░░░░ ██████
+ ██  Mac Media Stack ██  ██████  ████████ ██████ ██████
+ ██████████████████████  ██████  ██    ██ ██████ ██
+ ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██████  ████████ ██████ ██████
+ ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██  ██  ██    ██   ██   ██  ██
+ ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██  ██  ██    ██   ██   ██████
+ ██████████████████████
+    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀     ⚡ ADVANCED — self-healing media server for macOS
+```
 
 A fully automated, self-healing media server for macOS. Builds on [mac-media-stack](https://github.com/liamvibecodes/mac-media-stack) with additional services for transcoding, quality optimization, metadata management, and automated maintenance.
 
