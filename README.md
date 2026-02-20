@@ -81,6 +81,12 @@ bash scripts/install-launchd-jobs.sh
 
 See [SETUP.md](SETUP.md) for the complete walkthrough.
 
+## Screenshots
+
+| Seerr (request movies/shows) | Radarr (movie library) | Sonarr (TV library) |
+|:---:|:---:|:---:|
+| ![Seerr](screenshots/seerr.png) | ![Radarr](screenshots/radarr.png) | ![Sonarr](screenshots/sonarr.png) |
+
 ## How It Works
 
 <img src="flow.gif" alt="Request to streaming flow" width="700" />
