@@ -1,0 +1,80 @@
+# TRaSH Guides quality profiles synced via Recyclarr
+# Copy to ${MEDIA_DIR}/config/recyclarr/recyclarr.yml after first boot
+# Replace API keys with actual values from each service's Settings > General
+
+sonarr:
+  series:
+    base_url: http://sonarr:8989
+    api_key: YOUR_SONARR_API_KEY
+
+    quality_definition:
+      type: series
+
+    quality_profiles:
+      - name: WEB-DL (1080p/2160p)
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: WEBDL-2160p
+          until_score: 10000
+        min_format_score: 0
+        quality_sort: top
+        qualities:
+          - name: WEBDL-2160p
+          - name: WEBRip-2160p
+          - name: WEBDL-1080p
+          - name: WEBRip-1080p
+          - name: HDTV-2160p
+          - name: HDTV-1080p
+
+    custom_formats:
+      - trash_ids:
+          - 32b367365729d530ca1c124a0b180c64  # Bad Dual Groups
+          - 82d40da2bc6923f41e14394075dd4b03  # No-RlsGroup
+          - e1a997ddb54e3ecbfe06341ad323c458  # Obfuscated
+          - 06d66ab109d4d2eddb2794d21526d140  # Retags
+          - 1b3994c551cbb92a2c781af061f4ab44  # Scene
+        assign_scores_to:
+          - name: WEB-DL (1080p/2160p)
+
+radarr:
+  movies:
+    base_url: http://radarr:7878
+    api_key: YOUR_RADARR_API_KEY
+
+    quality_definition:
+      type: movie
+
+    quality_profiles:
+      - name: HD Bluray + WEB
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Bluray-2160p
+          until_score: 10000
+        min_format_score: 0
+        quality_sort: top
+        qualities:
+          - name: Bluray-2160p
+          - name: WEBDL-2160p
+          - name: WEBRip-2160p
+          - name: Remux-2160p
+          - name: Bluray-1080p
+          - name: WEBDL-1080p
+          - name: WEBRip-1080p
+          - name: Remux-1080p
+
+    custom_formats:
+      - trash_ids:
+          - b8cd450cbfa689c0259a01d9e29ba3d6  # 3D
+          - ed38b889b31be83fda192888e2286d83  # BR-DISK
+          - 90a6f9a284dff5103f6346090e6280c8  # LQ
+          - dc98083864ea246d05a42df0d05f81cc  # x265 (HD)
+          - ae9b7c9ebde1f3bd336a8cbd1ec4c5e5  # No-RlsGroup
+          - 7357cf5161efbf8c4d5d0c30b4815ee2  # Obfuscated
+          - 5c44f52a8714fdd79bb4d98e2673be1f  # Retags
+          - f537cf427b64c38c8e36298f657e4828  # Scene
+        assign_scores_to:
+          - name: HD Bluray + WEB

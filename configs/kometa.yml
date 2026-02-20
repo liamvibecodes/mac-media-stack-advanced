@@ -1,0 +1,52 @@
+# Kometa (Plex Meta Manager) configuration
+# Copy to ${MEDIA_DIR}/config/kometa/config.yml after first boot
+# Replace YOUR_PLEX_TOKEN and YOUR_TMDB_API_KEY with actual values
+#
+# Plex token: https://support.plex.tv/articles/204059436-finding-an-authentication-token-x-plex-token/
+# TMDB API key: https://www.themoviedb.org/settings/api (free account)
+
+libraries:
+  Movies:
+    collection_files:
+      - default: franchise
+    overlay_files:
+      - default: resolution
+    operations:
+      mass_critic_rating_update: mdb_tomatoes
+      mass_audience_rating_update: mdb_tomatoesaudience
+  TV Shows:
+    collection_files:
+      - default: franchise
+    overlay_files:
+      - default: resolution
+    operations:
+      mass_critic_rating_update: mdb_tomatoes
+      mass_audience_rating_update: mdb_tomatoesaudience
+
+plex:
+  url: http://host.docker.internal:32400
+  token: YOUR_PLEX_TOKEN
+  timeout: 60
+  clean_bundles: false
+  empty_trash: false
+  optimize: false
+
+settings:
+  run_order:
+    - operations
+    - metadata
+    - collections
+    - overlays
+  cache: true
+  cache_expiration: 60
+  sync_mode: append
+  minimum_items: 1
+  show_missing: true
+  show_unmanaged: true
+  overlay_artwork_filetype: webp_lossy
+  overlay_artwork_quality: 90
+
+tmdb:
+  apikey: YOUR_TMDB_API_KEY
+  language: en
+  cache_expiration: 60

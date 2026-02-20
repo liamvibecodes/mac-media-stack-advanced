@@ -1,0 +1,10 @@
+.env
+.env.nord
+config/
+Downloads/
+Movies/
+TV Shows/
+logs/
+state/
+backups/
+tdarr-transcode-cache/

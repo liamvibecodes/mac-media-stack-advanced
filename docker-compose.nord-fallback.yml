@@ -1,0 +1,21 @@
+# NordVPN fallback override
+# Used by vpn-mode.sh and vpn-failover-watch.sh when ProtonVPN is down.
+# Requires a separate .env.nord file with WIREGUARD_PRIVATE_KEY for Nord.
+
+services:
+  gluetun:
+    env_file:
+      - ./.env
+      - ./.env.nord
+    environment:
+      - VPN_SERVICE_PROVIDER=nordvpn
+      - SERVER_CITIES=
+      - PORT_FORWARD_ONLY=off
+      - VPN_PORT_FORWARDING=off
+      - VPN_PORT_FORWARDING_PROVIDER=
+      - VPN_PORT_FORWARDING_UP_COMMAND=
+      - VPN_PORT_FORWARDING_DOWN_COMMAND=
+    ports:
+      - 127.0.0.1:8080:8080
+      - 6881:6881
+      - 6881:6881/udp
