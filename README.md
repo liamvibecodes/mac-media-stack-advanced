@@ -81,7 +81,9 @@ bash scripts/install-launchd-jobs.sh
 
 See [SETUP.md](SETUP.md) for the complete walkthrough.
 
-## Architecture
+## How It Works
+
+<img src="flow.gif" alt="Request to streaming flow" width="700" />
 
 ```
 Seerr (request) -> Radarr/Sonarr -> Prowlarr (search) -> qBittorrent (via VPN) -> Plex (watch)
