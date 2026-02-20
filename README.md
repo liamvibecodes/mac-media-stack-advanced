@@ -26,9 +26,17 @@
   <br><br>
 </div>
 
-## Why This Version?
+## Why This One?
 
-The [basic stack](https://github.com/liamvibecodes/mac-media-stack) gets you up and running. This version is for people who want it to run itself: automatic transcoding to save disk space, quality profiles that filter out bad releases, metadata that keeps Plex looking clean, a watchdog that fixes stalled downloads, and VPN failover so your tunnel never stays down. All of it runs on macOS with launchd, not systemd. Built for Macs, not adapted from Linux.
+There are dozens of *arr stack Docker Compose repos on GitHub. Almost all of them dump a compose file and leave you to figure out the rest. This one is different:
+
+- **One command to install.** Clone, configure, and start everything with a single `curl | bash`. No 45-minute manual setup.
+- **Auto-configures itself.** The configure script wires up all 13 services via their APIs. No clicking through web UIs.
+- **Built for macOS.** Native paths, launchd instead of systemd, Docker Desktop instead of bare Docker. Not a Linux guide with "should work on Mac" in the footnotes.
+- **Self-healing.** Hourly health checks, download watchdog, VPN failover between providers. Runs unattended.
+- **Quality automation.** TRaSH Guides profiles filter out bad releases. Kometa keeps Plex metadata clean. Tdarr saves disk space with automatic transcoding.
+
+New to self-hosted media? Start with the [basic version](https://github.com/liamvibecodes/mac-media-stack) first.
 
 ---
 
