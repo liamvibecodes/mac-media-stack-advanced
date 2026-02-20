@@ -1,18 +1,25 @@
-```
-                          edia            tack
- ██████████████████████  ░░░░░░  ████████ ░░░░░░ ██████
- ██  Mac Media Stack ██  ██████  ████████ ██████ ██████
- ██████████████████████  ██████  ██    ██ ██████ ██
- ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██████  ████████ ██████ ██████
- ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██  ██  ██    ██   ██   ██  ██
- ██ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ██  ██  ██  ██    ██   ██   ██████
- ██████████████████████
-    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀     ⚡ ADVANCED — self-healing media server for macOS
-```
-
-A fully automated, self-healing media server for macOS. Builds on [mac-media-stack](https://github.com/liamvibecodes/mac-media-stack) with additional services for transcoding, quality optimization, metadata management, and automated maintenance.
-
-**New to this?** Start with the [basic version](https://github.com/liamvibecodes/mac-media-stack) first. This version is for users who want the full power-user setup.
+<div align="center">
+  <br>
+  <a href="#one-command-install">
+    <img src="https://img.shields.io/badge/MAC_MEDIA_STACK-00C853?style=for-the-badge&logo=apple&logoColor=white" alt="Mac Media Stack" height="40" />
+  </a>
+  <br>
+  <img src="https://img.shields.io/badge/ADVANCED-FFD700?style=flat-square&labelColor=333" alt="Advanced" />
+  <br><br>
+  <strong>Fully automated, self-healing media server for macOS</strong>
+  <br>
+  <sub>Everything from the <a href="https://github.com/liamvibecodes/mac-media-stack">basic stack</a>, plus transcoding, quality profiles, metadata automation, download watchdog, VPN failover, and automated backups.</sub>
+  <br><br>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Plex-EBAF00?style=flat-square&logo=plex&logoColor=white" />
+  <img src="https://img.shields.io/badge/Sonarr-00CCFF?style=flat-square&logo=sonarr&logoColor=white" />
+  <img src="https://img.shields.io/badge/Radarr-FFC230?style=flat-square&logo=radarr&logoColor=black" />
+  <img src="https://img.shields.io/badge/Tdarr-5C2D91?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/Recyclarr-FF6B35?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/Kometa-FF4081?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white" />
+  <br><br>
+</div>
 
 ## What's Added Over Basic
 
