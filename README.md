@@ -19,7 +19,16 @@
   <img src="https://img.shields.io/badge/Kometa-FF4081?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white" />
   <br><br>
+  <img src="https://img.shields.io/github/stars/liamvibecodes/mac-media-stack-advanced?style=flat-square&color=yellow" />
+  <img src="https://img.shields.io/github/license/liamvibecodes/mac-media-stack-advanced?style=flat-square" />
+  <br><br>
 </div>
+
+## Why This Version?
+
+The [basic stack](https://github.com/liamvibecodes/mac-media-stack) gets you up and running. This version is for people who want it to run itself: automatic transcoding to save disk space, quality profiles that filter out bad releases, metadata that keeps Plex looking clean, a watchdog that fixes stalled downloads, and VPN failover so your tunnel never stays down. All of it runs on macOS with launchd, not systemd. Built for Macs, not adapted from Linux.
+
+---
 
 ## What's Added Over Basic
 
@@ -47,6 +56,12 @@ Requires Docker Desktop and Plex already installed. Handles everything else.
 ```bash
 curl -fsSL https://raw.githubusercontent.com/liamvibecodes/mac-media-stack-advanced/main/bootstrap.sh | bash
 ```
+
+<details>
+<summary>See it in action</summary>
+<br>
+<img src="demo.gif" alt="Mac Media Stack install demo" width="700" />
+</details>
 
 ## Manual Quick Start
 
@@ -104,3 +119,7 @@ Pre-configured templates in `configs/` (copy to your Media folder after first bo
 - **kometa.yml** - Plex metadata automation (franchise collections, resolution overlays)
 
 Both require API keys that are generated on first boot. The configure script will print them for you.
+
+## License
+
+[MIT](LICENSE)
