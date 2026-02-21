@@ -185,6 +185,43 @@ services:
       - ${MEDIA_DIR}/config/recyclarr:/config
     restart: unless-stopped
 
+  # ─── Optional: Music (Lidarr + Tidarr) ───
+  # Uncomment to add music management. Run: bash scripts/setup-music.sh first.
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    profiles: ["music"]
+    environment:
+      - PUID=${PUID:-501}
+      - PGID=${PGID:-20}
+      - TZ=${TIMEZONE:-America/New_York}
+    volumes:
+      - ${MEDIA_DIR}/config/lidarr:/config
+      - ${MEDIA_DIR}/Music:/music
+      - ${MEDIA_DIR}/Downloads:/downloads
+      - ${MEDIA_DIR}/Downloads/tidarr:/downloads/tidarr
+    ports:
+      - 127.0.0.1:8686:8686
+    restart: unless-stopped
+
+  tidarr:
+    image: cstaelen/tidarr:latest
+    container_name: tidarr
+    profiles: ["music"]
+    environment:
+      - PUID=${PUID:-501}
+      - PGID=${PGID:-20}
+      - TZ=${TIMEZONE:-America/New_York}
+    volumes:
+      - ${MEDIA_DIR}/config/tidarr:/shared
+      - ${MEDIA_DIR}/Downloads/tidarr:/shared/nzb_downloads
+      - ${MEDIA_DIR}/Music:/music
+      - ${MEDIA_DIR}/Downloads:/downloads
+    ports:
+      - 127.0.0.1:8484:8484
+    restart: unless-stopped
+
   watchtower:
     image: containrrr/watchtower:latest
     container_name: watchtower

@@ -45,7 +45,6 @@ else
         > "$SCRIPT_DIR/.env"
     chmod 600 "$SCRIPT_DIR/.env"
     echo -e "  ${GREEN}Done${NC}"
-<<<<<<< Updated upstream:projects/mac-media-stack-advanced/scripts/setup.sh
 fi
 
 # Copy config templates if not already present
@@ -57,20 +56,6 @@ fi
 if [[ ! -f "$MEDIA_DIR/config/kometa/config.yml" ]]; then
     cp "$SCRIPT_DIR/configs/kometa.yml" "$MEDIA_DIR/config/kometa/config.yml"
     echo "  Copied kometa.yml template (edit Plex token + TMDB key after first boot)"
-=======
-    echo ""
-    echo -e "${YELLOW}IMPORTANT:${NC} You still need to add your VPN keys to .env"
-    echo "  Open .env in a text editor and fill in:"
-    echo "    - WIREGUARD_PRIVATE_KEY"
-    echo "    - WIREGUARD_ADDRESSES"
-    echo "  (from your ProtonVPN account or provided to you)"
-<<<<<<< Updated upstream:projects/mac-media-stack-advanced/scripts/setup.sh
-<<<<<<< Updated upstream:projects/mac-media-stack-advanced/scripts/setup.sh
->>>>>>> Stashed changes:projects/media-stack-kit/scripts/setup.sh
-=======
->>>>>>> Stashed changes:projects/media-stack-kit/scripts/setup.sh
-=======
->>>>>>> Stashed changes:projects/media-stack-kit/scripts/setup.sh
 fi
 
 echo ""
@@ -83,4 +68,8 @@ echo "  1. Edit .env and add your VPN keys"
 echo "  2. Run: docker compose up -d"
 echo "  3. Run: bash scripts/configure.sh"
 echo "  4. Edit config templates with your API keys (see SETUP.md)"
+echo ""
+echo "Optional - Music (Lidarr + Tidarr):"
+echo "  Run: bash scripts/setup-music.sh"
+echo "  Then: docker compose --profile music up -d"
 echo ""

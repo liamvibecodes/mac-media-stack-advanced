@@ -39,6 +39,22 @@ The [basic stack](https://github.com/liamvibecodes/mac-media-stack) gets you up 
 | **Kometa** | Plex metadata automation (franchise collections, resolution overlays, RT ratings) |
 | **Unpackerr** | Auto-extracts RAR'd downloads for Radarr/Sonarr |
 
+## Optional: Music (Lidarr + Tidarr)
+
+| Service | What It Does |
+|---------|-------------|
+| **Lidarr** | Automatic music management (like Sonarr/Radarr but for music albums) |
+| **Tidarr** | Downloads FLAC from Tidal (up to 24-bit/192kHz). Web UI + Lidarr integration |
+
+Music services use Docker Compose profiles and are not started by default. To enable:
+
+```bash
+bash scripts/setup-music.sh
+docker compose --profile music up -d
+```
+
+Then open Tidarr at `http://localhost:8484` to authenticate with your Tidal account, and Lidarr at `http://localhost:8686` to configure your music library. See the [Music Setup](#music-setup) section below for details.
+
 ## Automation
 
 | Script | Schedule | What It Does |
@@ -97,6 +113,10 @@ Seerr (request) -> Radarr/Sonarr -> Prowlarr (search) -> qBittorrent (via VPN) -
                                      Tdarr (transcode) -----+
                                      Kometa (metadata) ------> Plex
                                      Recyclarr (quality) ----> Radarr/Sonarr
+
+Optional music:
+                   Lidarr (music management) -> Prowlarr / Tidarr -> Plex (listen)
+                   Tidarr (Tidal FLAC downloads) ----^
 ```
 
 All download traffic routes through ProtonVPN (with optional NordVPN failover). Everything else uses your normal connection. All services auto-start on boot and self-heal if they go down.
@@ -116,6 +136,7 @@ All download traffic routes through ProtonVPN (with optional NordVPN failover). 
 | `scripts/vpn-mode.sh` | Manual VPN provider switcher |
 | `scripts/vpn-failover-watch.sh` | Automatic VPN failover daemon |
 | `scripts/run-kometa.sh` | Trigger Kometa metadata run |
+| `scripts/setup-music.sh` | Creates music directories and Tidarr config (optional) |
 
 ## Config Templates
 
@@ -125,6 +146,70 @@ Pre-configured templates in `configs/` (copy to your Media folder after first bo
 - **kometa.yml** - Plex metadata automation (franchise collections, resolution overlays)
 
 Both require API keys that are generated on first boot. The configure script will print them for you.
+
+## Music Setup
+
+Music is optional and uses Docker Compose [profiles](https://docs.docker.com/compose/profiles/). The core stack works without it.
+
+### What You Get
+
+- **Lidarr** manages your music library the same way Radarr handles movies. It monitors artists, searches for albums via Prowlarr, and imports downloads into your Plex music folder.
+- **Tidarr** downloads FLAC directly from Tidal (up to 24-bit/192kHz Hi-Res). It has a web UI for manual downloads and also acts as an indexer + download client for Lidarr, so Lidarr can search and download from Tidal automatically.
+
+### Quick Start
+
+```bash
+# 1. Create music directories and config
+bash scripts/setup-music.sh
+
+# 2. Start the music services
+docker compose --profile music up -d
+
+# 3. Authenticate with Tidal
+#    Open http://localhost:8484 and follow the OAuth device flow
+
+# 4. Configure Lidarr
+#    Open http://localhost:8686
+#    - Settings > Media Management > Add root folder: /music
+#    - Settings > Download Clients > Add SABnzbd:
+#        Host: tidarr, Port: 8484, URL Base: /api/sabnzbd
+#    - Settings > Indexers > Add Newznab:
+#        URL: http://tidarr:8484, API Path: /api/lidarr
+#        Categories: 3000, 3010, 3040
+#    - Settings > Download Clients > Add qBittorrent (for torrent fallback):
+#        Host: gluetun, Port: 8080
+```
+
+### Tidarr Download Config
+
+The setup script creates a default `tiddl` config at `~/Media/config/tidarr/.tiddl/config.toml`. Key settings:
+
+- **Quality:** `max` (24-bit Hi-Res FLAC when available, falls back to 16-bit/44.1kHz)
+- **Download path:** Your Plex music folder (files go directly to the library)
+- **Skip existing:** Won't re-download albums you already have
+- **File template:** `Artist/Album/01 Track Title.flac` (Plex-compatible naming)
+
+### Day-to-Day
+
+| What | Where |
+|------|-------|
+| Search and download from Tidal manually | http://localhost:8484 |
+| Manage music library (add artists, monitor) | http://localhost:8686 |
+| Listen via Plex/Plexamp | http://localhost:32400/web |
+
+### Starting/Stopping Music Services
+
+```bash
+# Start music services
+docker compose --profile music up -d
+
+# Stop only music services (keeps everything else running)
+docker compose --profile music stop lidarr tidarr
+
+# Include music in all future docker compose commands
+# Add to your shell profile:
+export COMPOSE_PROFILES=music
+```
 
 ## License
 
