@@ -38,7 +38,7 @@ fi
 echo ""
 
 echo "Containers:"
-for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr watchtower; do
+for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr watchtower lidarr tidarr; do
     state=$(docker inspect -f '{{.State.Status}}' "$name" 2>/dev/null)
     if [[ "$state" == "running" ]]; then
         echo -e "  ${GREEN}OK${NC}  $name"
@@ -46,6 +46,8 @@ for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr
     elif [[ "$name" == "kometa" ]]; then
         # Kometa runs as a one-shot, exited is normal
         echo -e "  ${YELLOW}OK${NC}  $name (one-shot, not always running)"
+    elif [[ "$name" == "lidarr" || "$name" == "tidarr" ]] && [[ -z "$state" ]]; then
+        echo -e "  ${YELLOW}SKIP${NC}  $name (music profile not enabled)"
     else
         echo -e "  ${RED}FAIL${NC}  $name (${state:-not found})"
         ((FAIL++))
@@ -61,6 +63,12 @@ check_service "Radarr" "http://localhost:7878"
 check_service "Bazarr" "http://localhost:6767"
 check_service "Seerr" "http://localhost:5055"
 check_service "Tdarr" "http://localhost:8265"
+
+# Music services (only if profile enabled)
+if docker inspect -f '{{.State.Status}}' lidarr &>/dev/null; then
+    check_service "Lidarr" "http://localhost:8686"
+    check_service "Tidarr" "http://localhost:8484"
+fi
 
 echo ""
 echo "VPN:"

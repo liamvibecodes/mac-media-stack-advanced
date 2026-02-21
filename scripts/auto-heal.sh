@@ -44,8 +44,12 @@ else
 fi
 
 # Check containers
-for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr; do
+for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr lidarr tidarr; do
     state=$(docker inspect -f '{{.State.Status}}' "$name" 2>/dev/null)
+    # Skip music services if not installed
+    if [[ "$name" == "lidarr" || "$name" == "tidarr" ]] && [[ -z "$state" ]]; then
+        continue
+    fi
     if [[ "$state" != "running" ]]; then
         log "WARN: $name is $state. Starting..."
         docker start "$name" >> "$LOG" 2>&1
