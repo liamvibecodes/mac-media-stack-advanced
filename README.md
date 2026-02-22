@@ -14,7 +14,9 @@
   <img src="https://img.shields.io/badge/Plex-EBAF00?style=flat-square&logo=plex&logoColor=white" />
   <img src="https://img.shields.io/badge/Sonarr-00CCFF?style=flat-square&logo=sonarr&logoColor=white" />
   <img src="https://img.shields.io/badge/Radarr-FFC230?style=flat-square&logo=radarr&logoColor=black" />
+  <img src="https://img.shields.io/badge/Lidarr-00CC66?style=flat-square&logo=lidarr&logoColor=white" />
   <img src="https://img.shields.io/badge/Tdarr-5C2D91?style=flat-square&logoColor=white" />
+  <img src="https://img.shields.io/badge/Tidarr-1DB954?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/Recyclarr-FF6B35?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/Kometa-FF4081?style=flat-square&logoColor=white" />
   <img src="https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white" />
