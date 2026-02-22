@@ -8,7 +8,7 @@ Everything from the [basic setup](https://github.com/liamvibecodes/mac-media-sta
 
 ## Quick Option: One-Command Install
 
-If you already have Docker Desktop and Plex installed, you can run a single command that handles the core setup:
+If you already have OrbStack (or Docker Desktop) and Plex installed, you can run a single command that handles the core setup:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/liamvibecodes/mac-media-stack-advanced/main/bootstrap.sh | bash
@@ -21,10 +21,12 @@ It will prompt you for VPN keys, configure all services, and install automation 
 ## Prerequisites
 
 - A Mac (any recent macOS)
-- Docker Desktop installed and running
+- [OrbStack](https://orbstack.dev) (recommended) or [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
 - Plex installed and signed in
 - ProtonVPN WireGuard credentials
 - A free TMDB API key (https://www.themoviedb.org/settings/api)
+
+> **Why OrbStack?** It starts in ~2 seconds (vs 30s for Docker Desktop), uses ~1GB RAM (vs 4GB), and has 2-10x faster file I/O. It's a drop-in replacement that runs the same Docker commands. Docker Desktop works fine too.
 
 ---
 

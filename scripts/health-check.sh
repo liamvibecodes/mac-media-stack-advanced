@@ -28,11 +28,24 @@ echo "  Media Stack Health Check"
 echo "=============================="
 echo ""
 
+# Detect container runtime
+detect_runtime() {
+    if [[ -d "/Applications/OrbStack.app" ]] || command -v orbstack &>/dev/null; then
+        echo "OrbStack"
+    elif [[ -d "/Applications/Docker.app" ]]; then
+        echo "Docker Desktop"
+    else
+        echo "Docker"
+    fi
+}
+
+RUNTIME=$(detect_runtime)
+
 if docker info &>/dev/null; then
-    echo -e "  ${GREEN}OK${NC}  Docker Desktop"
+    echo -e "  ${GREEN}OK${NC}  $RUNTIME"
     ((PASS++))
 else
-    echo -e "  ${RED}FAIL${NC}  Docker Desktop (not running)"
+    echo -e "  ${RED}FAIL${NC}  $RUNTIME (not running)"
     exit 1
 fi
 echo ""

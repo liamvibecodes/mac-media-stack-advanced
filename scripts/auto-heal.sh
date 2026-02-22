@@ -18,7 +18,7 @@ fi
 log "--- Health check started ---"
 
 if ! docker info &>/dev/null; then
-    log "ERROR: Docker not running"
+    log "ERROR: Container runtime not running"
     exit 1
 fi
 

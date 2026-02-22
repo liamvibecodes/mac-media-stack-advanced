@@ -11,6 +11,7 @@
   <sub>Everything from the <a href="https://github.com/liamvibecodes/mac-media-stack">basic stack</a>, plus transcoding, quality profiles, metadata automation, download watchdog, VPN failover, and automated backups.</sub>
   <br><br>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/OrbStack-000000?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIgZmlsbD0id2hpdGUiLz48L3N2Zz4=&logoColor=white" />
   <img src="https://img.shields.io/badge/Plex-EBAF00?style=flat-square&logo=plex&logoColor=white" />
   <img src="https://img.shields.io/badge/Sonarr-00CCFF?style=flat-square&logo=sonarr&logoColor=white" />
   <img src="https://img.shields.io/badge/Radarr-FFC230?style=flat-square&logo=radarr&logoColor=black" />
@@ -32,7 +33,7 @@ There are dozens of *arr stack Docker Compose repos on GitHub. Almost all of the
 
 - **One command to install.** Clone, configure, and start everything with a single `curl | bash`. No 45-minute manual setup.
 - **Auto-configures itself.** The configure script wires up all 13 services via their APIs. No clicking through web UIs.
-- **Built for macOS.** Native paths, launchd instead of systemd, Docker Desktop instead of bare Docker. Not a Linux guide with "should work on Mac" in the footnotes.
+- **Built for macOS.** Native paths, launchd instead of systemd, OrbStack or Docker Desktop instead of bare Docker. Not a Linux guide with "should work on Mac" in the footnotes.
 - **Self-healing.** Hourly health checks, download watchdog, VPN failover between providers. Runs unattended.
 - **Quality automation.** TRaSH Guides profiles filter out bad releases. Kometa keeps Plex metadata clean. Tdarr saves disk space with automatic transcoding.
 
@@ -77,7 +78,7 @@ Then open Tidarr at `http://localhost:8484` to authenticate with your Tidal acco
 
 ## One-Command Install
 
-Requires Docker Desktop and Plex already installed. Handles everything else.
+Requires OrbStack (or Docker Desktop) and Plex already installed. Handles everything else.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/liamvibecodes/mac-media-stack-advanced/main/bootstrap.sh | bash
