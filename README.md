@@ -143,6 +143,7 @@ All download traffic routes through ProtonVPN (with optional NordVPN failover). 
 | `scripts/vpn-failover-watch.sh` | Automatic VPN failover daemon |
 | `scripts/run-kometa.sh` | Trigger Kometa metadata run |
 | `scripts/setup-music.sh` | Creates music directories and Tidarr config (optional) |
+| `scripts/refresh-image-lock.sh` | Refreshes pinned image digests and regenerates IMAGE_LOCK.md |
 
 ## Config Templates
 
