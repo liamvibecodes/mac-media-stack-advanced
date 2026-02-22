@@ -213,6 +213,10 @@ docker compose --profile music stop lidarr tidarr
 export COMPOSE_PROFILES=music
 ```
 
+## Author
+
+Built by [@liamvibecodes](https://github.com/liamvibecodes)
+
 ## License
 
 [MIT](LICENSE)
