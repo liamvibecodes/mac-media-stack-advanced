@@ -227,6 +227,13 @@ docker compose --profile music stop lidarr tidarr
 export COMPOSE_PROFILES=music
 ```
 
+## Companion Tools
+
+| Tool | What It Does |
+|------|-------------|
+| [mac-media-stack-permissions](https://github.com/liamvibecodes/mac-media-stack-permissions) | Audit and fix file permissions across your stack |
+| [mac-media-stack-backup](https://github.com/liamvibecodes/mac-media-stack-backup) | Automated backup and restore for configs and databases |
+
 ## Author
 
 Built by [@liamvibecodes](https://github.com/liamvibecodes)
