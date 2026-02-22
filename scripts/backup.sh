@@ -30,7 +30,9 @@ find "$BASE_DIR/config" -maxdepth 2 -type f -name '*.db' -print0 | while IFS= re
 done
 
 # Snapshot container status
-docker compose -f "$SCRIPT_DIR/docker-compose.yml" ps > "$OUT/state/compose-ps.txt" 2>/dev/null || true
+if ! docker compose -f "$SCRIPT_DIR/docker-compose.yml" ps > "$OUT/state/compose-ps.txt" 2>/dev/null; then
+    echo "$(date '+%F %T') WARN: could not capture docker compose status snapshot" >> "$BASE_DIR/logs/backup.log"
+fi
 
 # Prune old backups (14 days)
 find "$BACKUP_ROOT" -mindepth 1 -maxdepth 1 -type d -mtime +14 -exec rm -rf {} +

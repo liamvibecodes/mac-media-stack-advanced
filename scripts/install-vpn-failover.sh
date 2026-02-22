@@ -12,6 +12,9 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 LAUNCH_DIR="$HOME/Library/LaunchAgents"
 PLIST="$LAUNCH_DIR/com.media-stack.vpn-failover.plist"
+LOG_DIR="$HOME/Media/logs/launchd"
+
+mkdir -p "$LOG_DIR"
 
 if [[ ! -f "$PROJECT_DIR/.env.nord" ]]; then
     echo -e "${RED}Error:${NC} .env.nord not found."
@@ -36,9 +39,9 @@ cat > "$PLIST" <<EOF
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
-    <string>/dev/null</string>
+    <string>$LOG_DIR/vpn-failover.out.log</string>
     <key>StandardErrorPath</key>
-    <string>/dev/null</string>
+    <string>$LOG_DIR/vpn-failover.err.log</string>
 </dict>
 </plist>
 EOF

@@ -91,6 +91,7 @@ cd mac-media-stack-advanced
 bash scripts/setup.sh
 # edit .env with VPN keys
 docker compose up -d
+docker compose --profile autoupdate up -d watchtower  # optional auto-updates
 bash scripts/configure.sh
 bash scripts/install-launchd-jobs.sh
 ```
@@ -98,6 +99,8 @@ bash scripts/install-launchd-jobs.sh
 ## Full Setup Guide
 
 See [SETUP.md](SETUP.md) for the complete walkthrough.
+
+By default, Seerr is bound to `127.0.0.1` for safer local-only access. Set `SEERR_BIND_IP=0.0.0.0` in `.env` only if you intentionally want LAN exposure.
 
 ## What It Looks Like
 

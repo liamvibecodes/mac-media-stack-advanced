@@ -38,12 +38,12 @@ fi
 echo ""
 
 echo "Containers:"
-for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr watchtower lidarr tidarr; do
+for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr tdarr unpackerr recyclarr kometa lidarr tidarr; do
     state=$(docker inspect -f '{{.State.Status}}' "$name" 2>/dev/null)
     if [[ "$state" == "running" ]]; then
         echo -e "  ${GREEN}OK${NC}  $name"
         ((PASS++))
-    elif [[ "$name" == "kometa" ]]; then
+    elif [[ "$name" == "kometa" ]] && [[ "$state" == "exited" || "$state" == "created" ]]; then
         # Kometa runs as a one-shot, exited is normal
         echo -e "  ${YELLOW}OK${NC}  $name (one-shot, not always running)"
     elif [[ "$name" == "lidarr" || "$name" == "tidarr" ]] && [[ -z "$state" ]]; then
@@ -53,6 +53,14 @@ for name in gluetun qbittorrent prowlarr sonarr radarr bazarr flaresolverr seerr
         ((FAIL++))
     fi
 done
+
+watchtower_state=$(docker inspect -f '{{.State.Status}}' watchtower 2>/dev/null || true)
+if [[ "$watchtower_state" == "running" ]]; then
+    echo -e "  ${GREEN}OK${NC}  watchtower (autoupdate profile enabled)"
+    ((PASS++))
+else
+    echo -e "  ${YELLOW}SKIP${NC}  watchtower (optional; enable with --profile autoupdate)"
+fi
 
 echo ""
 echo "Web UIs:"

@@ -58,6 +58,11 @@ bash scripts/health-check.sh
 
 Wait for all containers to show OK. First pull takes 3-5 GB.
 
+Optional: enable automatic container updates (Watchtower):
+```bash
+docker compose --profile autoupdate up -d watchtower
+```
+
 ---
 
 ## Step 4: Auto-Configure Services
@@ -141,7 +146,7 @@ This installs:
 - Download watchdog (stalled torrent auto-fix every 15 min)
 - Kometa scheduler (metadata refresh every 4 hours)
 
-All logs go to `~/Media/logs/`.
+Automation logs go to `~/Media/logs/` and launchd stdout/stderr logs go to `~/Media/logs/launchd/`.
 
 ### Optional: VPN Failover
 
