@@ -14,7 +14,7 @@ If you already have OrbStack (or Docker Desktop) and Plex installed, you can run
 curl -fsSL https://raw.githubusercontent.com/liamvibecodes/mac-media-stack-advanced/main/bootstrap.sh | bash
 ```
 
-It will prompt you for VPN keys, configure all services, and install automation jobs. You'll still need to do Step 6 (configure Recyclarr, Kometa, Tdarr, and Unpackerr with API keys) manually afterward.
+It will prompt you for VPN keys, configure all services, and install automation jobs. You'll still need to do Step 7 (configure Recyclarr, Kometa, Tdarr, and Unpackerr with API keys) manually afterward.
 
 ---
 
@@ -30,7 +30,38 @@ It will prompt you for VPN keys, configure all services, and install automation 
 
 ---
 
-## Step 1: Download and Setup
+## Step 1: Install a Container Runtime
+
+You need a container runtime to run the behind-the-scenes services. Pick one:
+
+### Option A: OrbStack (Recommended)
+
+OrbStack is faster and lighter than Docker Desktop (~2s startup, ~1GB RAM).
+
+```bash
+brew install --cask orbstack
+```
+
+Or download from https://orbstack.dev. Open it once after installing.
+
+### Option B: Docker Desktop
+
+1. Go to https://www.docker.com/products/docker-desktop/
+2. Click "Download for Mac"
+   - If you have an M-series Mac (M1, M2, M3, M4): choose "Apple Silicon"
+   - If you're not sure, click the Apple icon top-left of your screen > "About This Mac" and check the chip
+3. Open the downloaded `.dmg` file
+4. Drag Docker to your Applications folder
+5. Open Docker Desktop from Applications
+6. It will ask for your password to install components. Enter it.
+7. Wait for it to finish starting (the whale icon in your menu bar will stop animating)
+8. In Docker Desktop settings (gear icon), go to "General" and make sure "Start Docker Desktop when you sign in" is checked
+
+Both options use the same `docker` and `docker compose` commands. Everything in this guide works identically with either one.
+
+---
+
+## Step 2: Download and Setup
 
 ```bash
 cd ~
@@ -41,7 +72,7 @@ bash scripts/setup.sh
 
 ---
 
-## Step 2: Add VPN Keys
+## Step 3: Add VPN Keys
 
 ```bash
 open -a TextEdit .env
@@ -51,7 +82,7 @@ Fill in `WIREGUARD_PRIVATE_KEY` and `WIREGUARD_ADDRESSES` from your ProtonVPN ac
 
 ---
 
-## Step 3: Start the Stack
+## Step 4: Start the Stack
 
 ```bash
 docker compose up -d
@@ -67,7 +98,7 @@ docker compose --profile autoupdate up -d watchtower
 
 ---
 
-## Step 4: Auto-Configure Services
+## Step 5: Auto-Configure Services
 
 ```bash
 bash scripts/configure.sh
@@ -77,7 +108,7 @@ This configures qBittorrent, Prowlarr (indexers), Radarr, Sonarr, and Seerr. It 
 
 ---
 
-## Step 5: Set Up Plex Libraries
+## Step 6: Set Up Plex Libraries
 
 1. Open http://localhost:32400/web
 2. Settings > Libraries > Add Library
@@ -86,7 +117,7 @@ This configures qBittorrent, Prowlarr (indexers), Radarr, Sonarr, and Seerr. It 
 
 ---
 
-## Step 6: Configure Advanced Services
+## Step 7: Configure Advanced Services
 
 ### Recyclarr (TRaSH quality profiles)
 
@@ -136,7 +167,7 @@ docker compose restart unpackerr
 
 ---
 
-## Step 7: Install Automation Jobs
+## Step 8: Install Automation Jobs
 
 ```bash
 bash scripts/install-launchd-jobs.sh
